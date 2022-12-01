@@ -186,48 +186,76 @@ class home extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 var data = RoomData[index];
                 return GestureDetector(
-                  child: Card(
-                    elevation: 10,
-                    child: Container(
-                      height: 400,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Stack(
-                            children: [
-                              Container(
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(data['image']),
-                                    fit: BoxFit.fill,
+                  onTap: (){
+                    Navigator.pushNamed(context, 'detail',arguments: ['id']);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      elevation: 10,
+                      child: Container(
+                        height: 400,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(data['image']),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  ),
+                                Positioned(
+                                  right: 10,
+                                  bottom: 10,
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      color: Colors.grey
+                                    ),
+                                    child: Center(child: Text('\$${data['price'].toString()}')),
                                   ),
                                 ),
+                                Positioned(
+                                  right: 5,
+                                  top: 5,
+                                  child: Icon(
+                                    Icons.star_border,
+                                    color: Colors.black.withOpacity(.5),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top:10,left: 10),
+                              child: Text(data['title'],style: TextStyle(fontSize: 20),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4,left: 10),
+                              child: Text(data['location'],style: TextStyle(fontSize: 15),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top:4,left: 10),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.star, color: Colors.green,),
+                                  Icon(Icons.star, color: Colors.green,),
+                                  Icon(Icons.star, color: Colors.green,),
+                                  Icon(Icons.star, color: Colors.green,),
+                                  Icon(Icons.star, color: Colors.green,),
+                                  Text('  (${data['review'].toString()} reviews)',
+                                    style: TextStyle(color: Colors.grey),)
+                                ],
                               ),
-                              Positioned(
-                                right: 5,
-                                top: 5,
-                                child: Icon(
-                                  Icons.star_border,
-                                  color: Colors.black.withOpacity(.5),
-                                ),
-                              )
-                            ],
-                          ),
-                          Text(data['title'],style: TextStyle(fontSize: 20),),
-                          Text(data['location'],style: TextStyle(fontSize: 15),),
-                          Row(
-                            children: [
-                              Icon(Icons.star, color: Colors.green,),
-                              Icon(Icons.star, color: Colors.green,),
-                              Icon(Icons.star, color: Colors.green,),
-                              Icon(Icons.star, color: Colors.green,),
-                              Icon(Icons.star, color: Colors.green,),
-                              Text('  (${data['review'].toString()} reviews)',
-                                style: TextStyle(color: Colors.grey),)
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

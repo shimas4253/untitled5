@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled5/detail.dart';
 import 'package:untitled5/homepage.dart';
 
 void main(){
@@ -11,8 +12,12 @@ void main(){
    @override
    Widget build(BuildContext context) {
      return MaterialApp(
-       home:home() ,
+       initialRoute:'/',
        debugShowCheckedModeBanner: false,
+       routes: {
+         '/':(context)=>home(),
+         'detail':(context)=>detail()
+       },
      );
    }
  }
